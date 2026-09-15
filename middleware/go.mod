@@ -6,7 +6,7 @@ replace github.com/mimokpl/kratos-authz => ../
 
 require (
 	github.com/go-kratos/kratos/v2 v2.9.2
-	github.com/mimokpl/kratos-authz v1.1.8
+	github.com/mimokpl/kratos-authz v1.1.1
 )
 
 require (

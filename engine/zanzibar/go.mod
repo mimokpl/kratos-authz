@@ -9,7 +9,7 @@ require (
 	github.com/ory/keto-client-go v0.11.0-alpha.0
 	github.com/ory/keto/proto v0.13.0-alpha.0
 	github.com/stretchr/testify v1.11.1
-	github.com/mimokpl/kratos-authz v1.1.8
+	github.com/mimokpl/kratos-authz v1.1.1
 	google.golang.org/grpc v1.80.0
 )
 
