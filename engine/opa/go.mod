@@ -6,12 +6,12 @@ replace github.com/mimokpl/kratos-authz => ../../
 
 require (
 	github.com/go-kratos/kratos/v2 v2.9.2
+	github.com/mimokpl/kratos-authz v1.9.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/open-policy-agent/opa v1.15.2
 	github.com/pkg/errors v0.9.1
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 	github.com/stretchr/testify v1.11.1
-	github.com/mimokpl/kratos-authz v1.1.1
 )
 
 require (

@@ -5,11 +5,11 @@ go 1.25.0
 require (
 	github.com/go-kratos/kratos/v2 v2.9.2
 	github.com/google/uuid v1.6.0
+	github.com/mimokpl/kratos-authz v1.9.0
 	github.com/openfga/go-sdk v0.8.0
 	github.com/ory/keto-client-go v0.11.0-alpha.0
 	github.com/ory/keto/proto v0.13.0-alpha.0
 	github.com/stretchr/testify v1.11.1
-	github.com/mimokpl/kratos-authz v1.1.1
 	google.golang.org/grpc v1.80.0
 )
 
