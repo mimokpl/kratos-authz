@@ -3,7 +3,7 @@ package casbin
 import (
 	"context"
 
-	"github.com/go-kratos/kratos/v2/log"
+	log "github.com/mimokpl/kratos-bootstrap/logger"
 
 	stdCasbin "github.com/casbin/casbin/v2"
 	"github.com/casbin/casbin/v2/model"

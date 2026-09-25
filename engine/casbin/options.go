@@ -2,7 +2,7 @@ package casbin
 
 import (
 	"github.com/casbin/casbin/v2/model"
-	"github.com/go-kratos/kratos/v2/log"
+	log "github.com/mimokpl/kratos-bootstrap/logger"
 
 	"github.com/mimokpl/kratos-authz/engine"
 	"github.com/mimokpl/kratos-authz/engine/casbin/assets"

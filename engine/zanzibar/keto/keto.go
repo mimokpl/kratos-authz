@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/status"
 
-	"github.com/go-kratos/kratos/v2/log"
+	log "github.com/mimokpl/kratos-bootstrap/logger"
 
 	client "github.com/ory/keto-client-go"
 	acl "github.com/ory/keto/proto/ory/keto/relation_tuples/v1alpha2"

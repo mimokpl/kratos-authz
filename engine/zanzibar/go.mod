@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/go-kratos/kratos/v2 v2.9.2
 	github.com/google/uuid v1.6.0
-	github.com/mimokpl/kratos-authz v1.9.0
+	github.com/mimokpl/kratos-authz v1.9.1
 	github.com/openfga/go-sdk v0.8.0
 	github.com/ory/keto-client-go v0.11.0-alpha.0
 	github.com/ory/keto/proto v0.13.0-alpha.0
@@ -18,6 +18,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/mimokpl/kratos-bootstrap/logger v1.9.1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
@@ -35,3 +36,5 @@ require (
 )
 
 replace github.com/mimokpl/kratos-authz => ../../
+
+replace github.com/mimokpl/kratos-bootstrap/logger => /Users/sec/codes/mimokpl/mimox/relys/kratos-bootstrap/logger

@@ -6,7 +6,7 @@ replace github.com/mimokpl/kratos-authz => ../../
 
 require (
 	github.com/go-kratos/kratos/v2 v2.9.2
-	github.com/mimokpl/kratos-authz v1.9.0
+	github.com/mimokpl/kratos-authz v1.9.1
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/open-policy-agent/opa v1.15.2
 	github.com/pkg/errors v0.9.1
@@ -32,6 +32,7 @@ require (
 	github.com/lestrrat-go/httprc/v3 v3.0.5 // indirect
 	github.com/lestrrat-go/jwx/v3 v3.0.13 // indirect
 	github.com/lestrrat-go/option/v2 v2.0.0 // indirect
+	github.com/mimokpl/kratos-bootstrap/logger v1.9.1
 	github.com/prometheus/common v0.67.5 // indirect
 	github.com/prometheus/procfs v0.20.1 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20250401214520-65e299d6c5c9 // indirect
@@ -57,3 +58,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	sigs.k8s.io/yaml v1.6.0 // indirect
 )
+
+replace github.com/mimokpl/kratos-bootstrap/logger => /Users/sec/codes/mimokpl/mimox/relys/kratos-bootstrap/logger

@@ -7,7 +7,7 @@ replace github.com/mimokpl/kratos-authz => ../../
 require (
 	github.com/casbin/casbin/v2 v2.135.0
 	github.com/go-kratos/kratos/v2 v2.9.2
-	github.com/mimokpl/kratos-authz v1.9.0
+	github.com/mimokpl/kratos-authz v1.9.1
 	github.com/stretchr/testify v1.11.1
 )
 
@@ -17,6 +17,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
+	github.com/mimokpl/kratos-bootstrap/logger v1.9.1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	golang.org/x/sys v0.43.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260406210006-6f92a3bedf2d // indirect
@@ -24,3 +25,5 @@ require (
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+replace github.com/mimokpl/kratos-bootstrap/logger => /Users/sec/codes/mimokpl/mimox/relys/kratos-bootstrap/logger
