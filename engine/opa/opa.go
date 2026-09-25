@@ -107,7 +107,7 @@ func (s *State) ParseProjectsQuery(query string) error {
 
 	authzProjectsQueryParsed, err := ast.ParseBody(query)
 	if err != nil {
-		s.log.Errorf("failed to parse authz projects query %q: %v", query, err)
+		s.log.Errorf(context.Background(), "failed to parse authz projects query %q: %v", query, err)
 		return errors.Wrapf(err, "parse query %q", query)
 	}
 
@@ -129,7 +129,7 @@ func (s *State) ParseFilterPairsQuery(query string) error {
 
 	filteredPairsQueryParsed, err := ast.ParseBody(query)
 	if err != nil {
-		s.log.Errorf("failed to parse filtered pairs query %q: %v", query, err)
+		s.log.Errorf(context.Background(), "failed to parse filtered pairs query %q: %v", query, err)
 		return errors.Wrapf(err, "parse query %q", query)
 	}
 
@@ -151,7 +151,7 @@ func (s *State) ParseFilterProjectsQuery(query string) error {
 
 	filteredProjectsQueryParsed, err := ast.ParseBody(query)
 	if err != nil {
-		s.log.Errorf("failed to parse filtered projects query %q: %v", query, err)
+		s.log.Errorf(context.Background(), "failed to parse filtered projects query %q: %v", query, err)
 		return errors.Wrapf(err, "parse query %q", query)
 	}
 
@@ -189,7 +189,7 @@ func (s *State) ProjectsAuthorized(
 	)
 	resultSet, err := s.preparedEvalProjects.Eval(ctx, rego.EvalParsedInput(input))
 	if err != nil {
-		s.log.Errorf("failed to evaluate projects query: %v", err)
+		s.log.Errorf(context.Background(), "failed to evaluate projects query: %v", err)
 		return engine.Projects{}, &EvaluationError{e: err}
 	}
 
@@ -208,7 +208,7 @@ func (s *State) FilterAuthorizedPairs(
 
 	rs, err := s.evalQuery(ctx, s.queries[FilteredPairsQueryKey], opaInput, s.store)
 	if err != nil {
-		s.log.Errorf("failed to evaluate filtered pairs query: %v", err)
+		s.log.Errorf(context.Background(), "failed to evaluate filtered pairs query: %v", err)
 		return nil, &EvaluationError{e: err}
 	}
 
@@ -222,7 +222,7 @@ func (s *State) FilterAuthorizedProjects(ctx context.Context, subjects engine.Su
 
 	rs, err := s.evalQuery(ctx, s.queries[FilteredProjectsQueryKey], opaInput, s.store)
 	if err != nil {
-		s.log.Errorf("failed to evaluate filtered projects query: %v", err)
+		s.log.Errorf(context.Background(), "failed to evaluate filtered projects query: %v", err)
 		return nil, &EvaluationError{e: err}
 	}
 
@@ -245,7 +245,7 @@ func (s *State) IsAuthorized(
 		)
 		resultSet, err := s.preparedEvalProjects.Eval(ctx, rego.EvalParsedInput(input))
 		if err != nil {
-			s.log.Errorf("failed to evaluate projects query: %v", err)
+			s.log.Errorf(context.Background(), "failed to evaluate projects query: %v", err)
 			return false, &EvaluationError{e: err}
 		}
 		return s.allowedFromPreparedEvalQuery(resultSet)
@@ -257,7 +257,7 @@ func (s *State) IsAuthorized(
 
 		rs, err := s.evalQuery(ctx, s.queries[FilteredPairsQueryKey], opaInput, s.store)
 		if err != nil {
-			s.log.Errorf("failed to evaluate filtered pairs query: %v", err)
+			s.log.Errorf(context.Background(), "failed to evaluate filtered pairs query: %v", err)
 			return false, &EvaluationError{e: err}
 		}
 
@@ -284,7 +284,7 @@ func (s *State) InitModulesFromFiles(modules map[string]string) error {
 
 		parsed, err := ast.ParseModule(name, string(moduleData))
 		if err != nil {
-			s.log.Errorf("failed to parse module file %q: %v", name, err)
+			s.log.Errorf(context.Background(), "failed to parse module file %q: %v", name, err)
 			return errors.Wrapf(err, "parse module %q", name)
 		}
 
@@ -301,7 +301,7 @@ func (s *State) InitModulesFromString(modules map[string]string) error {
 	for name, moduleData := range modules {
 		parsed, err := ast.ParseModule(name, moduleData)
 		if err != nil {
-			s.log.Errorf("failed to parse module file %q: %v", name, err)
+			s.log.Errorf(context.Background(), "failed to parse module file %q: %v", name, err)
 			return errors.Wrapf(err, "parse module %q", name)
 		}
 
@@ -321,7 +321,7 @@ func (s *State) InitModulesFromAssets() error {
 		}
 		parsed, err := ast.ParseModule(name, string(MustAsset(name)))
 		if err != nil {
-			s.log.Errorf("failed to parse policy file %q: %v", name, err)
+			s.log.Errorf(context.Background(), "failed to parse policy file %q: %v", name, err)
 			return errors.Wrapf(err, "parse policy file %q", name)
 		}
 		mods[name] = parsed
@@ -335,7 +335,7 @@ func (s *State) InitModulesFromAssets() error {
 func (s *State) doCompile() error {
 	compiler, err := s.newCompiler()
 	if err != nil {
-		s.log.Errorf("failed to create compiler: %v", err)
+		s.log.Errorf(context.Background(), "failed to create compiler: %v", err)
 		return errors.Wrap(err, "init compiler")
 	}
 
@@ -377,7 +377,7 @@ func (s *State) initModules() error {
 func (s *State) makeAuthorizedProjectPreparedQuery(ctx context.Context) error {
 	compiler, err := s.newCompiler()
 	if err != nil {
-		s.log.Errorf("failed to create compiler: %v", err)
+		s.log.Errorf(context.Background(), "failed to create compiler: %v", err)
 		return err
 	}
 
@@ -393,7 +393,7 @@ func (s *State) makeAuthorizedProjectPreparedQuery(ctx context.Context) error {
 
 	pq, err := r.Partial(ctx)
 	if err != nil {
-		s.log.Errorf("failed to create partial query for authorized projects: %v", err)
+		s.log.Errorf(context.Background(), "failed to create partial query for authorized projects: %v", err)
 		return err
 	}
 
@@ -419,7 +419,7 @@ func (s *State) makeAuthorizedProjectPreparedQuery(ctx context.Context) error {
 	compiler.Compile(compiler.Modules)
 
 	if compiler.Failed() {
-		s.log.Errorf("failed to compile authorized projects: %v", compiler.Errors)
+		s.log.Errorf(context.Background(), "failed to compile authorized projects: %v", compiler.Errors)
 		return compiler.Errors
 	}
 
@@ -432,7 +432,7 @@ func (s *State) makeAuthorizedProjectPreparedQuery(ctx context.Context) error {
 
 	query, err := r2.PrepareForEval(ctx)
 	if err != nil {
-		s.log.Errorf("failed to prepare for eval: %v", err)
+		s.log.Errorf(context.Background(), "failed to prepare for eval: %v", err)
 		return errors.Wrap(err, "prepare query for eval (authorized_project)")
 	}
 
@@ -445,7 +445,7 @@ func (s *State) newCompiler() (*ast.Compiler, error) {
 	compiler := ast.NewCompiler()
 	compiler.Compile(s.modules)
 	if compiler.Failed() {
-		s.log.Errorf("failed to compile modules: %v", compiler.Errors)
+		s.log.Errorf(context.Background(), "failed to compile modules: %v", compiler.Errors)
 		return nil, errors.Wrap(compiler.Errors, "compile modules")
 	}
 
@@ -471,7 +471,7 @@ func (s *State) dumpData(ctx context.Context, store storage.Store) error {
 		return err
 	}
 
-	s.log.Info("data: ", string(jsonData))
+	s.log.Info(context.Background(), "data: ", string(jsonData))
 
 	return store.Commit(ctx, txn)
 }
@@ -491,14 +491,14 @@ func (s *State) evalQuery(ctx context.Context, query ast.Body, input interface{}
 		rego.SetRegoVersion(s.regoVersion),
 	).Eval(ctx)
 	if err != nil {
-		s.log.Errorf("failed to evaluate query: %v", err)
+		s.log.Errorf(context.Background(), "failed to evaluate query: %v", err)
 		return nil, err
 	}
 
 	if tracer != nil && tracer.Enabled() {
 		var buffer bytes.Buffer
 		topdown.PrettyTrace(&buffer, *tracer)
-		s.log.Debug(buffer.String())
+		s.log.Debug(context.Background(), buffer.String())
 	}
 
 	return rs, nil
@@ -563,7 +563,7 @@ func (s *State) projectsFromPartialResults(rs rego.ResultSet) (engine.Projects, 
 
 	projects, err := s.stringArrayFromResults(r.Expressions)
 	if err != nil {
-		s.log.Errorf("failed to parse projects: %v", err)
+		s.log.Errorf(context.Background(), "failed to parse projects: %v", err)
 		return nil, &UnexpectedResultExpressionError{exps: r.Expressions}
 	}
 
